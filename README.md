@@ -12,6 +12,31 @@ is reachable.
 > doesn't support WebSocket upgrade or arbitrary TCP, and the other
 > transports rely on protocol features Edge `fetch` doesn't expose.
 
+## Disclaimer
+
+**This repository is for education, experimentation, and personal testing
+only.** It is **not** production software: there is no SLA, no security
+audit, no ongoing maintenance guarantee, and no support channel.
+
+- **Do not rely on it for production** workloads, critical infrastructure,
+  or anything where availability, confidentiality, or integrity must be
+  assured. You deploy and operate it **entirely at your own risk**.
+- **Compliance is your responsibility.** Laws, regulations, and acceptable
+  use policies (including your host's and Vercel's) vary by jurisdiction
+  and service. The authors and contributors are **not** responsible for how
+  you use this code or for any damages, losses, or legal consequences that
+  arise from it.
+- **Vercel's terms of service** apply to anything you run on their
+  platform. A generic HTTP relay may violate their rules or acceptable use
+  if misused; read and follow [Vercel's policies](https://vercel.com/legal)
+  yourself.
+- **No warranty.** The software is provided "as is", without warranty of
+  any kind, express or implied. The authors accept no liability for its
+  use or misuse.
+
+If you need something production-grade, build or buy a properly engineered
+solution with monitoring, hardening, legal review, and operational ownership.
+
 ---
 
 ## How It Works
@@ -113,7 +138,7 @@ is transport-agnostic and just forwards bytes.
 ### Example VLESS share link
 
 ```
-vless://UUID@your-app.vercel.app:443?encryption=none&security=tls&sni=your-app.vercel.app&type=xhttp&path=/yourpath&host=your-app.vercel.app#vercel-relay
+vless://UUID@vercel.com:443?encryption=none&security=tls&sni=vercel.com&type=xhttp&path=/yourpath&host=your-app.vercel.app#vercel-relay
 ```
 
 ### Example Xray client JSON (outbound)
@@ -123,7 +148,7 @@ vless://UUID@your-app.vercel.app:443?encryption=none&security=tls&sni=your-app.v
   "protocol": "vless",
   "settings": {
     "vnext": [{
-      "address": "your-app.vercel.app",
+      "address": "vercel.com",
       "port": 443,
       "users": [{ "id": "YOUR-UUID", "encryption": "none" }]
     }]
@@ -132,7 +157,7 @@ vless://UUID@your-app.vercel.app:443?encryption=none&security=tls&sni=your-app.v
     "network": "xhttp",
     "security": "tls",
     "tlsSettings": {
-      "serverName": "your-app.vercel.app",
+      "serverName": "vercel.com",
       "allowInsecure": false
     },
     "xhttpSettings": {
